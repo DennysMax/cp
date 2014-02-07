@@ -1,0 +1,11 @@
+[
+	{
+		"nome" : "Teste",
+		"posicao" : "ata",
+		"gols" : 5,
+		"id" : 10,
+		votos: 5,
+		"valor" : 5.99,
+		"imagem" : "10.jpg"
+	}
+]

@@ -1,0 +1,6 @@
+<div class="titulo-carrinho">CARRINHO: </div>
+<% for( var i = 0; i < cart.length; i++ ) { %>
+
+	<div><%= cart[i].nome %> <b data-rem="<%= i %>">X</b></div>
+
+<% } %>
