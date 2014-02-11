@@ -1,0 +1,26 @@
+[
+	{
+		"nome" : "Cartolina",
+		"id" : 13,
+		"valor" : 0.99,
+		"imagem" : "13.jpg"
+	},
+	{
+		"nome" : "Papel almaço",
+		"id" : 14,
+		"valor" : 14.99,
+		"imagem" : "14.jpg"
+	},
+	{
+		"nome" : "Papel couchê",
+		"id" : 15,
+		"valor" : 15.99,
+		"imagem" : "15.jpg"
+	},
+	{
+		"nome" : "Papel celofane",
+		"id" : 16,
+		"valor" : 16.99,
+		"imagem" : "16.jpg"
+	}
+]
