@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Equipes</title>
+
+ <script src="js/bootbox.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+ <script type="text/javascript" 
+ src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js">
+ </Script>
+
+ <script type="text/javascript"> function reply_click(clicked_id) { alert(clicked_id); } </script>
+										
+	 <script type="text/javascript"> função reply_click (clicked_id) {
+										 
+			$('#myModal').modal('show'); 
+         
+         	if (clicked_id == "um") {
+            	alert ("miau");
+         	}
+		   
+			if (clicked_id != "um") {
+            	alert ("miau 2");
+         	}
+         	alert (clicked_id);
+         	} 
+     </script>
+ 
+ <script type="text/javascript">
+function PreloadCaptcha() {
+	showRecaptcha();
+}
+
+function showRecaptcha() {
+	Recaptcha.create("6LfcRu4SAAAAAGHRlVZ6HzUMIfkm_XFA4SS4n7mC", "dynamic_recaptcha_1", {
+	theme: "clean",
+	callback: Recaptcha.focus_response_field
+	});
+}
+
+var xmlhttp;
+function submitFormData(name) {
+
+	//alert("Message");
+	xmlhttp=null;
+	if (window.XMLHttpRequest) {// code for IE7, Firefox, Opera, etc.
+		xmlhttp=new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject) {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (xmlhttp!=null) {
+		xmlhttp.onreadystatechange=state_Change;
+		var url = "postformdata";
+		var params = "name="+name+"&recaptcha_challenge_field=" + Recaptcha.get_challenge() + "&recaptcha_response_field="+Recaptcha.get_response();
+		var status = document.getElementById("status");
+		status.innerHTML = "<img src='img/ajax-loader.gif'><b></b>";
+		xmlhttp.open("POST",url,true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("Content-length", params.length);
+		xmlhttp.setRequestHeader("Connection", "close");
+		xmlhttp.send(params);
+	}
+	else {
+		alert("Your browser does not support XMLHTTP.");
+	}
+}
+
+function state_Change() {
+	if (xmlhttp.readyState==4) {// 4 = "loaded"
+		if (xmlhttp.status==200) { // 200 = "OK"
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+
+		if ( xmlhttp.responseText.trim() == "Seu registro foi aceito, e voce fez um bom trabalho de entrar as duas palavras. Obrigado") {
+		
+			/* comentário em
+			diversas linhas */
+			alert();
+			if () {
+			}
+			
+			direcionaPaginaVotacao(); 
+			
+		}
+
+		Recaptcha.reload();
+		setTimeout(function() {
+			status.innerHTML = "";
+		}, 3000);
+		}
+		else {
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+			Recaptcha.reload();
+			setTimeout(function() {
+				status.innerHTML = "";
+			}, 3000);
+		}
+	}
+}
+</script>
+
+<script type="text/javascript">  
+  
+    function funcaoComum(div) { 
+    	
+    	if(div.id == "div2") {
+			alert("vamos lá Funcao 1");
+		}
+		if(div.id == "div1") {
+			alert("vamos lá Funcao 1");
+		}
+    }  
+  
+    function funcaoComumID(id) {  
+        div = document.getElementById(id);  
+    }  
+  
+</script>  
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<!-- Add custom CSS here -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+	#box{background:url('ajax-loader (1).gif') #fff center no-repeat;width:305px; height:80px; text-align:center; margin:auto;}
+</style>
+
+<script type="text/javascript">
+
+    var jogador;
+    
+     function httpPut(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "PUT", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpPost(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpGet(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl+"?data="+JSON.stringify(data), false );
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+  }
+  
+  function direcionaPaginaVotacao() {
+
+		location.href="partidas2.html";
+  }
+  
+  </script>
+
+</head>
+
+<script type="text/javascript">
+
+window.onload = function(){
+	PreloadCaptcha(); 
+}
+
+</script>
+
+<body>
+
+<script type="text/javascript">
+        
+        $(document).ready(function(){
+            $('#myModal').modal('show');   
+        });
+        
+</script> 
+  
+<script type="text/javascript">
+        
+       $('.btn').on('click', function(){
+            $('#myModal').modal('show');   
+        });
+        
+ </script> 
+    
+ <script type="text/javascript">
+        
+      function direcionaPagina() {
+      		location.href="index.html";
+      }
+        
+ </script> 
+    
+
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse"
+					data-toggle="collapse" type="button">
+					<span class="sr-only"> Toggle navigation </span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!--
+
+             You'll want to use a responsive image option so t…
+
+            -->
+				<a href="index.html"> <img src="5.png"></img>
+				</a>
+			</div>
+			<!--
+
+         Collect the nav links, forms, and other content f…
+
+        -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html"> Home </a></li>
+					<li><a href="partidas.html"> Votar </a></li>
+
+					<li><a href="ranking.html"> Ranking Geral </a></li>
+				</ul>
+			</div>
+			<!--
+
+         /.navbar-collapse 
+
+        -->
+		</div>
+		<!--
+
+     /.container 
+
+    -->
+
+	</nav>
+
+	<!-- Page Content -->
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					 <small></small>
+				</h1>
+
+			</div>
+
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Equipes <small></small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Equipes</li>
+				</ol>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+		<!-- Service Paragraphs -->
+
+		<!-- Service Tabs -->
+
+		<div class="row">
+
+			<div class="col-md-8"></div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-12">
+
+				<hr>
+				
+                <ul id="myTab" class="nav nav-tabs">
+
+                	<li><a href="#service-1" data-toggle="tab">Atlético Mineiro
+                		<img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/atletico-mg/desktop/img_header.jpg" itemprop="logo"></img></a>                    
+                    </li>                    
+                    <li class="active"><a href="#service-2" data-toggle="tab">Atlético Paraneaense
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/atletico-pr/desktop/img_header.jpg" itemprop="logo"></img></a>
+                    </li>
+                    <li><a href="#service-3" data-toggle="tab">Bahia
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/bahia/desktop/img_header.jpg" itemprop="logo"></a>
+                    </li>
+                    <li><a href="#service-4" data-toggle="tab">Botafogo
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/botafogo/desktop/img_header.jpg" itemprop="logo"></a>
+                    </li>
+                    <li><a href="#service-5" data-toggle="tab">Chapecoense
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/sc/futebol/times/chapecoense/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-6" data-toggle="tab">Corinthians
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/corinthians/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-7" data-toggle="tab">Coritiba
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/coritiba/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-8" data-toggle="tab">Criciuma
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/criciuma/desktop/img_header.jpg" itemprop="logo"></a>               
+                    </li>
+                    <li><a href="#service-9" data-toggle="tab">Cruzeiro
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/cruzeiro/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-10" data-toggle="tab">Figueirense
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/figueirense/desktop/img_header.jpg" itemprop="logo"></a>               
+                    </li>
+                    <li><a href="#service-11" data-toggle="tab">Flamengo
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/flamengo/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-12" data-toggle="tab">Fluminense
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/fluminense/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-13" data-toggle="tab">Goiás
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/goias/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-14" data-toggle="tab">Grêmio
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/gremio/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-15" data-toggle="tab">Internacional
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/internacional/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-16" data-toggle="tab">Palmeiras
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/palmeiras/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-17" data-toggle="tab">Santos
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/santos/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-18" data-toggle="tab">São Paulo
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/sao-paulo/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-19" data-toggle="tab">Sport
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/sport/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                    <li><a href="#service-20" data-toggle="tab">Vitória
+                        <img width="25" height="25" src="http://s.glbimg.com/es/ge/o/futebol/times/vitoria/desktop/img_header.jpg" itemprop="logo"></img></a>               
+                    </li>
+                </ul>
+
+				<div id="myTabContent" class="tab-content">
+											
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onClick=direcionaPagina() data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+										
+										<h4 class="modal-title" id="myModalLabel">Autenticação  necessária para o voto</h4>											
+										<h3></h3>
+										<h4 class="modal-title" id="myModalLabel"></h4>												
+												
+										</div>
+										<div class="modal-body">
+																			
+										<FORM NAME="dataform">
+										<TABLE>
+										<TR>
+										<TD><b>Seu nome:</b></TD>
+										<TD><INPUT NAME="txtName"/></TD>
+										</TR>
+										<TR>
+										<TD colspan="2"><div id="dynamic_recaptcha_1"></div></TD>					
+										</TR>		
+										<TR>
+										<TD colspan="2"><INPUT id="confirmar" 
+										type="button" class="btn btn-primary" value="Confirmar" name="btnSubmitData" onClick="submitFormData(txtName.value); return true"></TD>
+										</TR>
+										<TR>
+										<TD colspan="2"> <button id="cancelar" onClick=direcionaPagina() type="button" class="btn btn-default"
+											data-dismiss="modal">Cancelar</button> </TD>											
+										</TR>
+										<TR>
+										<TD colspan="2"><div id="status"/></TD>
+										</TR>
+										</TABLE>
+										</FORM>																																																									 									
+										</div>
+										<div class="modal-footer">
+										
+										</div>
+										
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->				
+
+					<div class="tab-pane fade" id="service-1">
+
+						<div class="well">
+							<h4>Elenco Atlético Mineiro</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<a id="nome" class="btn btn-primary btn-lg" href="partidas.html"> Vote
+						Agora </a>	
+									
+									 	<div id="testeDIV" border:1px solid #000000; width:100px; height:100px;"> <a href="#" onclick="abreModal()"> teste </a></div>
+
+										<li> <a id="div1" onclick="javascript:funcaoComum(this);" 
+		 									href="#fried-foods"data-toggle="modal" data-target="#myModalMarceloPalau" 
+		 									onclick="javascript:funcaoComumID('div3');">Marcelo Palu</a>
+										</li>
+										
+										<li><a  id="div2" onclick="javascript:funcaoComum(this);" 
+											href="#fried-foods" data-toggle="modal"
+											data-target="#myModal" onclick="javascript:funcaoComumID('div2');">Alex</a></li>
+											
+										<li><a id = "3" onclick = "reply_click(this.id)" href="#fried-foods"
+										>Carlos</a></li>
+
+										<li><a href="#fried-foods"data-toggle="modal"
+											data-target="#myModal">Carlos</a></li>
+										<li><a href="#wild-animals"data-toggle="modal"
+											data-target="#myModal">Claudio Tadeu</a></li>
+										<li><a href="#fireworks"data-toggle="modal"
+											data-target="#myModal">Dátolo</a></li>
+										<li><a href="#alien-abductions"data-toggle="modal"
+											data-target="#myModal">Dodo</a></li>
+										<li><a href="#business-casual"data-toggle="modal"
+											data-target="#myModal">Elder Santana</a></li>
+										<li><a href="#robots"data-toggle="modal"
+											data-target="#myModal">Eron</a></li>
+										<li><a href="#fireworks"data-toggle="modal"
+											data-target="#myModal">Filipe Soutto</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Guilherme</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jô</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Leandro Donizete</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Leonardo</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Luan</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Marcelo Bispo</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Marlon</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Neto Berola</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Pierre</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Rever</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Ronaldinho Gaucho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Uilson</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Yago</a></li>
+									</ul>
+
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Andre</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Claudinei</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Daniel</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Diego Tardelli</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Donato</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Emerson</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Fernandinho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Giovanni</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Gustavo</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Jemerson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Josué</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Lee</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Leonardo Silva</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Lucas Candido</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Marcos Rocha</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Michel</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Pedro Botelho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Renan Oliveira</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Richarlyson</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Rosinei</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Victor</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Tecnico : Paulo Autuori</a></li>
+										
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+						<!-- /well -->
+
+					</div>
+
+					<div class="tab-pane fade in active" id="service-2">
+
+						<div class="well">
+							<h4>Elenco Atlético Paranaense</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">teste</a></li>													
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Adriano</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Bruno Mendes</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Bruno Pelissari</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Carlos Cesar</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Daniel</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Deivid</a></li>
+										<li><a href="#robots">Douglas Coutinho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Ederson</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Erwin</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Felipe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gerson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Gustavo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Hugo Gumero</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Jean Felipe</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Jonas</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Jonathan Fernandp</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Junior</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Lucas Alves</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Lucas Olaza</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Maranhao</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo Palau</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Matheus Rossetto</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Maycon Canario</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Myller</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Nathan</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Paulinho Dias</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Peterson</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Rafael</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Renan Rocha</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Renato Vieira</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Roger</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Sidcley</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Taiberson</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Vinicius</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Willian Rocha</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Zezinho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Tecino : Miguel Angel Portugal</a></li>
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno Furlan</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Bruno Mota</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Bruno Rossetto</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Cleberson</a></li>
+										<li><a href="#alien-abductions"data-toggle="modal"
+											data-target="#myModal">David Henrique</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Dominic</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Drausio</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Elivelton</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Everton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fran Merida</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Guilherme</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Harrison</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Jean Chera</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Joao Paulo</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Jonatan Lucca</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Juninho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Leo Pereira</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Lucas Macanhan</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Manoel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Marcos Guilherme</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Matteus</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Mosquito</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Natanael</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Otavio</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Paulo Sergio</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Potiguar</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Rafael Zuchi</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Renato Chaves</a></li>	
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Rodolfo</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Santos</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Sueliton</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Tarik</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Weverton</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Willyan Sotto</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Tecnico : Petkovic</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- /well -->
+
+					</div>
+					<div class="tab-pane fade" id="service-3">
+						<div class="well">
+							<h4>Elenco Bahia</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+										data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Anderson Conceicao</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Anderson Talisca</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Avine</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Demerson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Douglas Pires</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Erick</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Guilherme Santos</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Hugo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Jussandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Nadson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Omar</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rafael</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rafael Miranda</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Railan</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Renan</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Robson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Titi</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Wilson Pittoni</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Tecnico : Marquinhos Santos</a></li>
+										
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Anderson Mello</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Angulo</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Branquinho</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Diego Felipe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Emanuel Biancucchi</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Fahel</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Helder</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Italo Melo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Lucas Fonseca</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Neto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Para</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Rafael Galhardo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rafinha</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Raul</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rhayner</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Souza</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Wangler</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Ze Roberto</a></li>
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-4">
+						<div class="well">
+							<h4>Elenco Botafogo</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+										data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Airton</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Alex Santos</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Andre Bahia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bolivar</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Cidinho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Dankler</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Doria</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal ">Elias</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Fabiano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gege</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Helton Leite</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Jeferson Mateus</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Jefferson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Juan Ferreyra</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Lennon</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Lucas</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Marlon</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Octavio</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Renan Lemos</a></li>										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodrigo Souto</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Sidney</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Yguinho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Técnico : Eduardo Hungaro</a></li>										
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Anderson Santos</a></li>
+										<li><a href="#business-casual"></a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Bolatti</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Cazu</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Daniel</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Dede</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Edilson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Emerson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Gabriel</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Guilherme</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Henrique</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Jeferson Paulista</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Jorge Wagner</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Julio Cesar</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Lodeiro</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Marcelo Mattos</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Matheus</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Renan</a></li>										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renato</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Sassá</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Wallyson</a></li>								
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-5">
+						<div class="well">
+							<h4>Elenco Chapecoense</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+										data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Nivaldo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Danilo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Bruno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alemao</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Tiago Sletti</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Fabiano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Pirão</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Wanderson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Hyoran</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Nenén</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Soares</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Tiago Luis</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Gral</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Técnico: Gilmar Dal Pozzo</a></li>
+																	
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Gustavo</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Silvio</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Rafael Lima</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Igor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">André Paulino</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Everton Silva</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Fabinho Gaúcho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willian Arão</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Régis</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Wescley</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Roni</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Fabinho Alves</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Bérgson</a></li>
+															
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-6">
+								<div class="well">
+							<h4>Elenco Corinthians</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alexandre Pato</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Cléber</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Diego Macedo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edenílson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Fabiano</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Fagner</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gil</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Guilherme Andrade</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Julio Cesar</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Luiz Ramírez</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Paolo Guerrero </a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Paulo Victor</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Pedro Henrique</a></li>						
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Renato Augusto</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Romarinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Uendel</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Wanderson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Técnico : Mano Menezes</a></li>
+										<li><a href="#wild-animals"></a></li>
+										<li><a href="#wild-animals"></a></li>																
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Danilo</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Danilo Fernandes</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Douglas</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Emerson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Fábio Santos</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Felipe</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Guilherme</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Jocinei</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Kaike</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Léo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Matheus Vidotto</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Paulo André</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">PC</a></li>				
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Ralf</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rodriguinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ualefi</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Walter</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Zé Paulo</a></li>																						
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-7">
+										<div class="well">
+							<h4>Elenco Coritiba</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Abner</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Alex Santos</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Anderson Costa</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bonfim</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Calyson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Chico</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Denner</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Djair</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Eberson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Emerson Santos</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Geraldo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Gil</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Iberbia</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Igor Celio</a></li>						
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Jackson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Julio Cesar</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Keirrison</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Lincoln</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Luizinho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Maykon</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Norberto</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rafael Martins</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rhuan</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rodrigo Josviaki</a></li>	
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Samuel</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Tadeu</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Timbó</a></li>	
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Vaná</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Victor Brasil</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Walisson</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Willian Rodrigues</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Zé Eduardo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Zé Carlos</a></li>
+																													
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">Alex</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Anderson Aquino</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Artur</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Bottinelli</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Carlinhos</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Deivid</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Diogo Goiano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dudu Figueiredo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Eltinho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Filipe Ramon</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Germano</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Henrique</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Icaro</a></li>				
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Igor Leandro</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Jãnio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Júnior Urso</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Leandro Almeida</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Luccas Claro</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Marcos Paulo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Moacir</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Paulo Otávio</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Rafhael Lucas</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Robinho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Roni</a></li>	
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Sérgio Manuel</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Thiago Primão</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Uelliton</a></li>	
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Vanderlei</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Victor Ferraz</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Willian Amorim</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Yago</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Zé Rafael</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Técnico : Dado Cavalcante</a></li>
+																																				
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-8">
+										<div class="well">
+							<h4>Elenco Criciuma</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+										data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Galatto</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Escudero</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Heitor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafael Donato</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Bruno Mazzuchello</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Everton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rogério</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Anderson Uchôa</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Joaão Vitor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ricardinho</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Serginho</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Lulinha</a></li>				
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Paulo Baier</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Vitor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fernando Karanga</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Lucca</a></li>																		
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">David</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">Ronaldo</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Fernando</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Joilson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ronaldo Alves</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Eduardo</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Ezequiel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Romulo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Diego Oliveira</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Luisinho Melllo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ruan</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">André Gava</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Maylson</a></li>				
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Thiago Humberto</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">Bruno Lopes</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gustavo</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Rodrigo Silva</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Técnico : Ricardo Drubscky</a></li>																					
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-9">
+											<div class="well">
+							<h4>Elenco Cruzeiro</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fábio</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Elisson</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Léo</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Dedé</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alex</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Mayke</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Samúdio</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Rodrigo Souza</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Tinga</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Nilton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alisson</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Elber</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ricardo Goulart</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Borges</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Dagoberto</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Willian</a></li>																	
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafael</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Alan</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Wallace</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Bruno Rodrigo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ceará</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Egídio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Silva</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Eurico</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Henrique</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Souza</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Èverton Ribeiro</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Marlone</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Júlio Baptista</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">Marcelo Moreno</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">Martinuccio</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Luan</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">Técnico : Marcelo Oliveira</a></li>																
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-10">
+						<div class="well">
+							<h4>Elenco Figueirense</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Albino</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Anderson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Thiago Heleno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ivan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Regisvaldo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dener</a></li>									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcos Assunção</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Yago</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wesley</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Éverton Leandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucielmo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Clayton</a></li>														
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Tiago Luis</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jean</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Nirley</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Raul</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willian</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rivaldo</a></li>									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jefferson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leonardo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Giovanni</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ricardo Bueno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ciro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luiz Eduardo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Vinícius Eutrópio</a></li>		
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-11">
+								<div class="well">
+							<h4>Elenco Flamengo</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Felipe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">César</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wallace</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leo Moura</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">João Paulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Caceres</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Val</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Welinton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Carlos Eduardo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Nixon</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruninho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Elano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Jayne de Almeida</a></li>
+										<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships"></a></li>
+																					
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo Victor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">González</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Frauches</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Digão</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">André Santos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Amaral</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gabriel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Samir</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alecssandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mattheus</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luiz Antônio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Thomás</a></li>
+									
+										
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-12">
+							<div class="well">
+							<h4>Elenco Fluminense</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Diego Cavalieri</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Klever</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Elivélton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro Euzébio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Igor Julião</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ronan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Diguinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafinha</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willian</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dario Conca</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Higor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wagner</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fred</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcos Jr</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Michael</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Walter</a></li>										
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Felipe Garcia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcos Felipe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gum</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wellington Carvalho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Carlinhos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Pablo Dyego</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wellington Silva</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fábio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Valencia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Chiquinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Eduardo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Robert</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Biro Biro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Kenedy</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Matheus Carvalho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafel Sobis</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Renato Gaúcho</a></li>													
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-13">
+							<div class="well">
+							<h4>Elenco Goiás</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Abuda</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Araújo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Clayton Sales</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Felipe Amorim</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Harlei</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Juliano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Léo Bonatini</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Liniker</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafael Tavares</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Raphael Luz</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Richely</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Tiago Real</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Valmir Lucas</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Welinton Júnior</a></li>																							
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Amaral</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Carlos Alberto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">David</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Erik</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Felipe Pitbull</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">João Paulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lima</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mário Sérgio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Pedro Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ramon</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ray</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodrigo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Thiago Mendes</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Túlio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Vítor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Claudinei Oliveira</a></li>																			
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-14">
+									<div class="well">
+							<h4>Elenco Grêmio</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Busatto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo Grohe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bressan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gabriel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafel Tyhere</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Saimon</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Berno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Pará</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wendell</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alán Ruiz</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Guilherme Amorim</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jean Deretti</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marco Antonio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Maxi Rodríguez</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Riveros</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Zé Roberto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Everaldo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Kleber</li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Coelho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Yuri Mamute</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Enderson Moreira</a></li>																												
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Follmann</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Tiago</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Cnavésio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Geromel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rhodolfo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Werley</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Moysés</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Tinga</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Adriano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Guilherme Biteco</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Léo Gago</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Matheus Biteco</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ramiro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Souza</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bercos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Everton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Mabília</a></li>																							
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-15">
+										<div class="well">
+							<h4>Elenco Internaconal</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Agenor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dida</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Índio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulão</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Cláudio Winck</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gilberto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Augusto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willians</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan Patrick</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">D'Alessandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Valdívia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Eduardo Sasha</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Maurides</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wellington Paulista</a></li>																											
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									<li><a href="#spaceships"></a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alisson Becker</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Muriel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ernando</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Juan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan Ruschel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fabrício</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Aránguiz</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">João Afonso</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ygor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alex</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Otávio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Caio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jorge Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rafael Moura</a></li>	
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Abel Braga</a></li>																													
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-16">
+										<div class="well">
+							<h4>Elenco Palmeiras</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#" data-toggle="modal"
+										data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Hernane</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fernando Prass</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wendel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willian Matheus</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno Oliveira</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo Oliveira</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Thiago Martins</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lúcio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renato</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">França</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Valdivia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Patrick Vieira</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mendieta</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marquinhos Gabriel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Vinicius</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan Kardec</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodolfo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Gilson kleina</a></li>
+																																	
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fábio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Juninho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Victor Luis</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wellington</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Tiago Alves</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Victorino</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wesley</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Eguren</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Josimar</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mazinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Serginho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Felipe Menezes</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno César</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Diogo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Miguel</a></li>																								
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-17">
+									<div class="well">
+							<h4>Elenco Santos</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Vladimir</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Aranha</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bruno Peres</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Cicino</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gustavo Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Neto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Arouca</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Léo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Léo Cittadini</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gabriel</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Geuvânio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Thiago Ribeiro</a></li>																																
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gabriel Gasparotto</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Emerson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Mena</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edu Dracena</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jubal</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Otávio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alisson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan Santos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandrinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Cícero</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Victor Andrade</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Giva</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leandro Damião</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal"> Técnico : Oswaldo de Oliveira</a></li>																						
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-18">
+								<div class="well">
+							<h4>Elenco São Paulo</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Adelmo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Allan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Antônio Carlos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Cañete</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Danilo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Denis</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">douglas</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ewandro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edson Silva</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">João Felipe</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Evangelista</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Silva</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luis Ricardo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Osvaldo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo Henrique Ganso</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Reinaldo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodrigo Caio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal" data-toggle="modal"
+											data-target="#myModal">Rogério Ceni</a></li>
+																																									
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ademilson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Álvaro Pereira</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Bochilia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Clemente Rodríguez</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Denilson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Diego</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Edson Silva</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Fabrício</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jadson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">João Schimidt</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Farias</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luis Fabiano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Maicon</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Pabón</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Paulo Miranda</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renan Ribeiro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Roger Carvalho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Muricy Ramalho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wellington</a></li>																									
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-19">
+							<div class="well">
+							<h4>Elenco Sport</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Magrão</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Flávio</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Durval</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ferron</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Igor</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Patric</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renê</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Chumacero</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodrigo Mancha</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Aílton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Naldinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ananias</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Felipe Azevedo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Neto Baiano</a></li>
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Saulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">André</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Enrique Meza</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Oswaldo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo Cordeiro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Renato</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Andreson Pedra</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal"> Rithely</a></li>
+										<li><a href="#spaceships data-toggle="modal"
+											data-target="#myModal"">Ronaldo</a></li>
+										<li><a href="#spaceships data-toggle="modal"
+											data-target="#myModal"">Everton Felipe</a></li>
+										<li><a href="#spaceships data-toggle="modal"
+											data-target="#myModal"">Robert Flores</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Erico Junior</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jonthan Balotelli</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Sandrinho</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Eduardo Baptista</a></li>																						
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+					<div class="tab-pane fade" id="service-20">
+						<div class="well">
+							<h4>Elenco Vitória</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Adailton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Andre Lima</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Ayrton</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dão</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Douglas</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Euller</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gabriel Soares</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Guillermo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Jonathan Ferrari</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Josué</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Leilson</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Lucas Zen</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luis Gustavo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mansur</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marquinhos</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mauria></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Neto Coruja</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rodrig Defendi</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willian Henrique</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Wilson</a></li>										
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Alan Pinheiro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Arthur Maia</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Danilo Tarracha</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Dinei</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Escudero</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Filipe Lima</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Guilherme</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Gustavo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">José Welison</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Juan</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Léo Ceará</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Luís Cáceres</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Marcelo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Matheus Salustiano</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Mineiro</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Nino Paraíba</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Rômulo</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Willie</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">Técnico : Ney Franco</a></li>																						
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- /well -->
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<div class="container">
+
+		<hr>
+
+	</div>
+	<!-- /.container -->
+				
+	<footer id="foot">
+
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<div class="top-scroll"></div>
+				<hr></hr>
+				<ul class="list-unstyled list-inline list-social-icons">
+				</ul>
+				<p>
+					<p id="texto">Copyright &copy; Company 2014</p>
+				</p>
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- JavaScript -->
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/modern-business.js"></script>
+
+</body>
+</html>
