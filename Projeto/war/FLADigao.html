@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Flamengo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+<script src="js/bootbox.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+ <script type="text/javascript" 
+ src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js">
+ </Script>
+ 
+ <script type="text/javascript">
+function PreloadCaptcha() {
+	showRecaptcha();
+}
+
+function showRecaptcha() {
+	Recaptcha.create("6LfcRu4SAAAAAGHRlVZ6HzUMIfkm_XFA4SS4n7mC", "dynamic_recaptcha_1", {
+	theme: "clean",
+	callback: Recaptcha.focus_response_field
+	});
+}
+
+var xmlhttp;
+function submitFormData(name) {
+
+	//alert("Message");
+	xmlhttp=null;
+	if (window.XMLHttpRequest) {// code for IE7, Firefox, Opera, etc.
+		xmlhttp=new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject) {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (xmlhttp!=null) {
+		xmlhttp.onreadystatechange=state_Change;
+		var url = "postformdata";
+		var params = "name="+name+"&recaptcha_challenge_field=" + Recaptcha.get_challenge() + "&recaptcha_response_field="+Recaptcha.get_response();
+		var status = document.getElementById("status");
+		status.innerHTML = "<img src='img/ajax-loader.gif'><b>Submitting your data. Please wait...</b>";
+		xmlhttp.open("POST",url,true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("Content-length", params.length);
+		xmlhttp.setRequestHeader("Connection", "close");
+		xmlhttp.send(params);
+	}
+	else {
+		alert("Your browser does not support XMLHTTP.");
+	}
+}
+
+function state_Change() {
+	if (xmlhttp.readyState==4) {// 4 = "loaded"
+		if (xmlhttp.status==200) { // 200 = "OK"
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+
+		if ( xmlhttp.responseText.trim() == "Seu registro foi aceito, e voce fez um bom trabalho de entrar as duas palavras. Obrigado") {
+			registraVotoFLADigao();
+		}
+
+		Recaptcha.reload();
+		setTimeout(function() {
+			status.innerHTML = "";
+		}, 3000);
+		}
+		else {
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+			Recaptcha.reload();
+			setTimeout(function() {
+				status.innerHTML = "";
+			}, 3000);
+		}
+	}
+}
+</script>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<!-- Add custom CSS here -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+	#box{background:url('ajax-loader (1).gif') #fff center no-repeat;width:305px; height:80px; text-align:center; margin:auto;}
+</style>
+
+<script type="text/javascript">
+
+    var jogador;
+    
+     function httpPut(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "PUT", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpPost(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpGet(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl+"?data="+JSON.stringify(data), false );
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+  }
+  
+  function registraVotoFLADigao() {
+
+		var nome = "Digao";
+			
+		var data = {nome:nome};
+		var jogadorData = httpPost('/jogador',data);
+		console.log(jogadorData);
+		alert ("Voto realizado com sucesso !");
+		location.href="social.html";
+		jogador = JSON.parse(jogadorData);
+	}
+	
+  </script>
+    
+</head>
+
+<body onload="PreloadCaptcha()">
+
+  
+   	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse"
+					data-toggle="collapse" type="button">
+					<span class="sr-only"> Toggle navigation </span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!--
+
+             You'll want to use a responsive image option so t…
+
+            -->
+				<a href="index.html"> <img src="5.png"></img>
+				</a>
+			</div>
+			<!--
+
+         Collect the nav links, forms, and other content f…
+
+        -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html"> Home </a></li>
+					<li><a href="partidas.html"> Votar </a></li>
+
+					<li><a href="ranking.html"> Ranking Geral </a></li>
+				</ul>
+			</div>
+			<!--
+
+         /.navbar-collapse 
+
+        -->
+		</div>
+		<!--
+
+     /.container 
+
+    -->
+
+	</nav>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Digao
+                    <small></small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Flamengo</li>
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                
+               <img width="100" height="100" src="data:image/jpeg;base64,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"></img></a>
+                
+                <ul>
+                
+                </ul>
+            </div>
+            
+                <div class="container">
+        <hr>
+
+    </div>
+			
+	<a class="btn btn-primary" href="#"  data-toggle="modal" data-target="#myModal">
+    	Votar
+	</a>
+
+        </div>
+
+    </div>
+    
+    	<!-- Modal -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" onClick=direcionaPagina() data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+										
+										<h4 class="modal-title" id="myModalLabel">Digite os caracteres para confirmar seu voto.</h4>											
+										<h3></h3>
+										<h4 class="modal-title" id="myModalLabel"></h4>												
+												
+										</div>
+										<div class="modal-body">
+																			
+										<FORM NAME="dataform">
+										<TABLE>
+										<TR>
+										<TD><b>Seu nome:</b></TD>
+										<TD><INPUT NAME="txtName"/></TD>
+										</TR>
+										<TR>
+										<TD colspan="2"><div id="dynamic_recaptcha_1"></div></TD>					
+										</TR>		
+										<TR>
+										<TD colspan="2"><INPUT id="confirmar" 
+										type="button" class="btn btn-primary" value="Confirmar" name="btnSubmitData" onClick="submitFormData(txtName.value); return true"></TD>
+										</TR>
+										<TR>
+										<TD colspan="2"> <button id="cancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button> </TD>											
+										</TR>
+										<TR>
+										<TD colspan="2"><div id="status"/></TD>
+										</TR>
+										</TABLE>
+										</FORM>																																																									 									
+										</div>
+										<div class="modal-footer">
+										
+										</div>
+										
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->	
+							
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/modern-business.js"></script>
+
+    <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+        <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+	<footer id="foot">
+	
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<div class="top-scroll"></div>
+				<hr></hr>
+				<ul class="list-unstyled list-inline list-social-icons">
+				</ul>
+				<p>
+					<p id="texto">Copyright &copy; Company 2014</p>
+				</p>
+
+			</div>
+		</div>
+	</footer>
+	
+</body>
+
+</html>

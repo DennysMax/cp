@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<title>Equipes</title>
+    <title>Flamengo</title>
 
- <script src="js/bootbox.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+<script src="js/bootbox.min.js"></script>
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
  <script type="text/javascript" 
  src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js">
@@ -71,11 +72,7 @@ function state_Change() {
 			status.innerHTML = xmlhttp.responseText;;
 
 		if ( xmlhttp.responseText.trim() == "Seu registro foi aceito, e voce fez um bom trabalho de entrar as duas palavras. Obrigado") {
-		
-			/* comentário em
-			diversas linhas */ 
-			direcionaPaginaVotacao(); 
-			
+			registraVotoFLALeoMoura();
 		}
 
 		Recaptcha.reload();
@@ -95,8 +92,6 @@ function state_Change() {
 }
 </script>
 
-<script type="text/javascript" src="jogadores.js"> </script> 
- 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
 
@@ -139,70 +134,112 @@ function state_Change() {
     return xmlHttp.responseText;
   }
   
-  function direcionaPaginaVotacao() {
+  function registraVotoFLALeoMoura() {
 
-		location.href="partidas2.html";
-  }
-  
+		var nome = "Leo Moura";
+			
+		var data = {nome:nome};
+		var jogadorData = httpPost('/jogador',data);
+		console.log(jogadorData);
+		alert ("Voto realizado com sucesso !");
+		location.href="social.html";
+		jogador = JSON.parse(jogadorData);
+	}
+	
   </script>
-
+    
 </head>
 
-<script type="text/javascript">
+<body onload="PreloadCaptcha()">
 
-window.onload = function(){
-	PreloadCaptcha(); 
-}
+  
+   	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-</script>
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse"
+					data-toggle="collapse" type="button">
+					<span class="sr-only"> Toggle navigation </span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!--
 
-<body id="bodyhome">
+             You'll want to use a responsive image option so tâ€¦
 
-<script type="text/javascript">
-        
-        $(document).ready(function(){
-            $('#myModal').modal('show');   
-        });
-        
-</script> 
-    
-<script type="text/javascript">
-        
-       $('.btn').on('click', function(){
-            $('#myModal').modal('show');   
-        });
-        
- </script> 
-    
- <script type="text/javascript">
-        
-      function direcionaPagina() {
-      		location.href="index.html";
-      }
-        
- </script> 
-    
-	<!-- Page Content -->
+            -->
+				<a href="index.html"> <img src="5.png"></img>
+				</a>
+			</div>
+			<!--
 
-	<div class="container">
+         Collect the nav links, forms, and other content fâ€¦
 
-		<!-- Service Paragraphs -->
+        -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html"> Home </a></li>
+					<li><a href="partidas.html"> Votar </a></li>
 
-		<!-- Service Tabs -->
+					<li><a href="ranking.html"> Ranking Geral </a></li>
+				</ul>
+			</div>
+			<!--
 
-		<div class="row">
+         /.navbar-collapse 
 
-			<div class="col-md-8"></div>
-
+        -->
 		</div>
+		<!--
 
-		<div class="row">
+     /.container 
 
-			<div class="col-lg-12">
+    -->
 
-				<div id="myTabContent" class="tab-content">
-											
-				<!-- Modal -->
+	</nav>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Leo Moura
+                    <small></small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Flamengo</li>
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                
+               <img width="100" height="100" src="http://s.glbimg.com//es/sde/f/2010/11/12/9a2661677f3ebab0dc3e39140265d15b_80x80.jpeg"></img></a>
+                
+                <ul>
+                
+                </ul>
+            </div>
+            
+                <div class="container">
+        <hr>
+
+    </div>
+			
+	<a class="btn btn-primary" href="#"  data-toggle="modal" data-target="#myModal">
+    	Votar
+	</a>
+
+        </div>
+
+    </div>
+    
+    	<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -211,7 +248,7 @@ window.onload = function(){
 								<button type="button" class="close" onClick=direcionaPagina() data-dismiss="modal"
 										aria-hidden="true">&times;</button>
 										
-										<h4 class="modal-title" id="myModalLabel">Autenticação  necessária para o voto</h4>											
+										<h4 class="modal-title" id="myModalLabel">Digite os caracteres para confirmar seu voto.</h4>											
 										<h3></h3>
 										<h4 class="modal-title" id="myModalLabel"></h4>												
 												
@@ -232,8 +269,7 @@ window.onload = function(){
 										type="button" class="btn btn-primary" value="Confirmar" name="btnSubmitData" onClick="submitFormData(txtName.value); return true"></TD>
 										</TR>
 										<TR>
-										<TD colspan="2"> <button id="cancelar" onClick=direcionaPagina() type="button" class="btn btn-default"
-											data-dismiss="modal">Cancelar</button> </TD>											
+										<TD colspan="2"> <button id="cancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button> </TD>											
 										</TR>
 										<TR>
 										<TD colspan="2"><div id="status"/></TD>
@@ -250,29 +286,50 @@ window.onload = function(){
 								</div>
 								<!-- /.modal-dialog -->
 							</div>
-							<!-- /.modal -->				
+							<!-- /.modal -->	
+							
+    <!-- /.container -->
 
-				</div>
+    <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/modern-business.js"></script>
+
+    <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+        <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+	<footer id="foot">
+	
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<div class="top-scroll"></div>
+				<hr></hr>
+				<ul class="list-unstyled list-inline list-social-icons">
+				</ul>
+				<p>
+					<p id="texto">Copyright &copy; Company 2014</p>
+				</p>
+
 			</div>
-
 		</div>
-		<!-- /.row -->
-
-	</div>
-	<!-- /.container -->
-
-	<div class="container">
-
-		
-
-	</div>
-	<!-- /.container -->
-
-
-	<!-- JavaScript -->
-	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/modern-business.js"></script>
-
+	</footer>
+	
 </body>
+
 </html>

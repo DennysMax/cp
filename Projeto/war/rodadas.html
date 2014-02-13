@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Rodadas</title>
+
+ <script src="js/bootbox.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+ <script type="text/javascript" 
+ src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js">
+ </Script>
+ 
+ <script type="text/javascript">
+function PreloadCaptcha() {
+	showRecaptcha();
+}
+
+function showRecaptcha() {
+	Recaptcha.create("6LfcRu4SAAAAAGHRlVZ6HzUMIfkm_XFA4SS4n7mC", "dynamic_recaptcha_1", {
+	theme: "clean",
+	callback: Recaptcha.focus_response_field
+	});
+}
+
+var xmlhttp;
+function submitFormData(name) {
+
+	//alert("Message");
+	xmlhttp=null;
+	if (window.XMLHttpRequest) {// code for IE7, Firefox, Opera, etc.
+		xmlhttp=new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject) {// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (xmlhttp!=null) {
+		xmlhttp.onreadystatechange=state_Change;
+		var url = "postformdata";
+		var params = "name="+name+"&recaptcha_challenge_field=" + Recaptcha.get_challenge() + "&recaptcha_response_field="+Recaptcha.get_response();
+		var status = document.getElementById("status");
+		status.innerHTML = "<img src='img/ajax-loader.gif'><b></b>";
+		xmlhttp.open("POST",url,true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("Content-length", params.length);
+		xmlhttp.setRequestHeader("Connection", "close");
+		xmlhttp.send(params);
+	}
+	else {
+		alert("Your browser does not support XMLHTTP.");
+	}
+}
+
+function state_Change() {
+	if (xmlhttp.readyState==4) {// 4 = "loaded"
+		if (xmlhttp.status==200) { // 200 = "OK"
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+
+		if ( xmlhttp.responseText.trim() == "Seu registro foi aceito, e voce fez um bom trabalho de entrar as duas palavras. Obrigado") {
+		
+			/* comentário em
+			diversas linhas */ 
+			direcionaPaginaVotacao();
+			if(name == "ramon") {
+			alert("ramon");
+			}
+			
+		}
+
+		Recaptcha.reload();
+		setTimeout(function() {
+			status.innerHTML = "";
+		}, 3000);
+		}
+		else {
+			var status = document.getElementById("status");
+			status.innerHTML = xmlhttp.responseText;;
+			Recaptcha.reload();
+			setTimeout(function() {
+				status.innerHTML = "";
+			}, 3000);
+		}
+	}
+}
+</script>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<!-- Add custom CSS here -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+	#box{background:url('ajax-loader (1).gif') #fff center no-repeat;width:305px; height:80px; text-align:center; margin:auto;}
+</style>
+
+<script type="text/javascript">
+
+    var jogador;
+    
+     function httpPut(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "PUT", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpPost(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", theUrl, false );
+    var params = "data="+JSON.stringify(data);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(params);
+    return xmlHttp.responseText;
+  }
+  
+  function httpGet(theUrl, data)
+  {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl+"?data="+JSON.stringify(data), false );
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+  }
+  
+  function direcionaPaginaVotacao() {
+
+		location.href="partidas2.html";
+  }
+  
+  </script>
+
+</head>
+
+<script type="text/javascript">
+
+window.onload = function(){
+	PreloadCaptcha(); 
+}
+
+</script>
+
+<body>
+
+    
+<script type="text/javascript">
+        
+       $('.btn').on('click', function(){
+            $('#myModal').modal('show');   
+        });
+        
+ </script> 
+    
+ <script type="text/javascript">
+        
+      function direcionaPagina() {
+      		location.href="index.html";
+      }
+        
+ </script> 
+    
+
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse"
+					data-toggle="collapse" type="button">
+					<span class="sr-only"> Toggle navigation </span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<!--
+
+             You'll want to use a responsive image option so t…
+
+            -->
+				<a href="index.html"> <img src="5.png"></img>
+				</a>
+			</div>
+			<!--
+
+         Collect the nav links, forms, and other content f…
+
+        -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="index.html"> Home </a></li>
+					<li><a href="rodadas.html"> Rodadas </a></li>
+
+					<li><a href="ranking.html"> Ranking Geral </a></li>
+				</ul>
+			</div>
+			<!--
+
+         /.navbar-collapse 
+
+        -->
+		</div>
+		<!--
+
+     /.container 
+
+    -->
+
+	</nav>
+
+	<!-- Page Content -->
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					 <small></small>
+				</h1>
+
+			</div>
+
+			<div class="col-lg-12">
+				<h1 class="page-header">
+					Rodadas <small></small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Rodadas</li>
+				</ol>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+		<!-- Service Paragraphs -->
+
+		<!-- Service Tabs -->
+
+		<div class="row">
+
+			<div class="col-md-8"></div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-12">
+
+				<hr>
+				
+                <ul id="myTab" class="nav nav-tabs">
+
+                </ul>
+
+				<div id="myTabContent" class="tab-content">
+											
+					<div class="tab-pane fade" id="service-1">
+
+						<div class="well">
+							<h4>Rodadas</h4>
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">							
+										
+									</ul>
+
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+									</ul>
+								</div>
+							
+							</div>
+						</div>
+						<!-- /well -->
+
+					</div>
+
+					<div class="tab-pane fade in active" id="service-2">
+
+						<div class="well">
+							
+							<div class="row">
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+										<li><a href="partidas.html">1º Rodada</a></li>													
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">2º Rodada</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">3º Rodada</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">4º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">4º Rodada</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">5º Rodada</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">6º Rodada</a></li>
+										<li><a href="#robots">7º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">8º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">9º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">10º Rodada</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">11º Rodada</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">12º Rodada</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">13º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">14º Rodada</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">15º Rodada</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">16º Rodada</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">17º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">18º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">19º Rodada</a></li>	
+										
+									</ul>
+								</div>
+								<div class="col-lg-6">
+									<ul class="list-unstyled">
+									
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">20º Rodada</a></li>
+										<li><a href="#spaceships" data-toggle="modal"
+											data-target="#myModal">21º Rodada</a></li>
+										<li><a href="#fried-foods" data-toggle="modal"
+											data-target="#myModal">22º Rodada</a></li>
+										<li><a href="#wild-animals" data-toggle="modal"
+											data-target="#myModal">23º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">24º Rodada</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">25º Rodada</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">26º Rodada</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">27º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">28º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">29º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">30º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">31º Rodada</a></li>
+										<li><a href="#alien-abductions" data-toggle="modal"
+											data-target="#myModal">32º Rodada</a></li>
+										<li><a href="#business-casual" data-toggle="modal"
+											data-target="#myModal">33º Rodada</a></li>
+										<li><a href="#robots" data-toggle="modal"
+											data-target="#myModal">34º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">35º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">36º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">37º Rodada</a></li>
+										<li><a href="#fireworks" data-toggle="modal"
+											data-target="#myModal">38º Rodada</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- /well -->
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<div class="container">
+
+		<hr>
+
+	</div>
+	<!-- /.container -->
+	
+	
+    <div class="container">
+
+        <hr>
+
+    </div>
+    <!-- /.container -->
+   
+    			
+	<footer id="foot">
+
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3 text-center">
+				<div class="top-scroll"></div>
+				<hr></hr>
+				<ul class="list-unstyled list-inline list-social-icons">
+				</ul>
+				<p>
+					<p id="texto">Copyright &copy; Company 2014</p>
+				</p>
+
+    <!-- /.container -->
+
+			</div>
+		</div>
+		
+		
+    <div class="container">
+
+       
+
+    </div>
+    <!-- /.container -->
+	</footer>
+
+	<!-- JavaScript -->
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/modern-business.js"></script>
+
+</body>
+</html>

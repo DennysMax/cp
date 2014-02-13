@@ -11,11 +11,26 @@
  width:172px;   
 }
 
+#prim {
+	position: relative;
+	margin-top: 28px;
+}
+#branco {
+	background-color: #FFFFFF;
+	color: #FFFFFF;
+	display:none,	
+}
+
 #confirmar {
 	position:relative;
 	margin-top: 40px;
 }
 
+#bodyhome {
+	background-color:black;
+	 background-image: url("img.jpg");
+	 
+}
 #cancelar {
 	position:relative;
 	margin-top: -60px;
@@ -6083,6 +6098,12 @@ button.close {
   overflow: hidden;
 }
 
+#testes {
+	background-color: #f00;
+	closeinoutside: true;
+	closeonesc: true;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -6093,6 +6114,8 @@ button.close {
   display: none;
   overflow: auto;
   overflow-y: scroll;
+  closeinoutside: false;
+  closeonesc: false;
 }
 
 .modal.fade .modal-dialog {
@@ -6109,6 +6132,8 @@ button.close {
   -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
           transform: translate(0, 0);
+           closeinoutside: false;
+  closeonesc: false;
 }
 
 .modal-dialog {
@@ -6117,9 +6142,17 @@ button.close {
   width: auto;
   padding: 10px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: auto; 
+  closeinoutside: false;
+  closeonesc: false;
 }
 
+#mens {
+	text-align: center;
+	position: relative;
+	margin-left:40px;;
+
+}
 .modal-content {
   position: relative;
   background-color: #ffffff;
@@ -6130,6 +6163,8 @@ button.close {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
+   closeinoutside: false;
+  closeonesc: false;
 }
 
 .modal-backdrop {
@@ -6140,6 +6175,8 @@ button.close {
   left: 0;
   z-index: 1030;
   background-color: #000000;
+   closeinoutside: false;
+  closeonesc: false;
 }
 
 .modal-backdrop.fade {
@@ -6150,6 +6187,8 @@ button.close {
 .modal-backdrop.in {
   opacity: 0.5;
   filter: alpha(opacity=50);
+   closeinoutside: false;
+  closeonesc: false;
 }
 
 .modal-header {
