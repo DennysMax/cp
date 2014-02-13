@@ -34,5 +34,7 @@ public class JogadoresServlet extends HttpServlet {
 			}
 		}
 		resp.getWriter().println(g.toJson(jPrimeiro));
+		resp.getWriter().println("Mostrando objeto");
+		
 	}
 }
